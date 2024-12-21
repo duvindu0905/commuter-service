@@ -1,0 +1,145 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Commuter Service API",
+      "description": "API for managing commuters in the bus service system.",
+      "version": "1.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:8085",
+        "description": "Development Server"
+      },
+      {
+        "url": "https://api.commuterservice.bussewaya.online",
+        "description": "Production Server"
+      }
+    ],
+    "paths": {
+      "/commuters": {
+        "post": {
+          "summary": "Create a new commuter",
+          "tags": ["Commuter"],
+          "operationId": "createCommuter",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Commuter"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Commuter created successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Commuter"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "message": "Required fields missing"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "get": {
+          "summary": "Get all commuters",
+          "tags": ["Commuter"],
+          "operationId": "getAllCommuters",
+          "responses": {
+            "200": {
+              "description": "A list of all commuters",
+              "content": {
+                "application/json": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Commuter"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/commuters/{commuterId}": {
+        "get": {
+          "summary": "Get a commuter by commuterId",
+          "tags": ["Commuter"],
+          "operationId": "getCommuterById",
+          "parameters": [
+            {
+              "name": "commuterId",
+              "in": "path",
+              "required": true,
+              "description": "The commuter ID to retrieve",
+              "schema": {
+                "type": "number"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Commuter details",
+              "content": {
+                "application/json": {
+                  "$ref": "#/components/schemas/Commuter"
+                }
+              }
+            },
+            "404": {
+              "description": "Commuter not found"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Commuter": {
+          "type": "object",
+          "properties": {
+            "commuterId": {
+              "type": "number",
+              "example": 1
+            },
+            "commuterName": {
+              "type": "string",
+              "example": "John Doe"
+            },
+            "commuterEmail": {
+              "type": "string",
+              "example": "johndoe@example.com"
+            },
+            "nic": {
+              "type": "string",
+              "example": "123456789V"
+            },
+            "mobileNumber": {
+              "type": "number",
+              "example": 9876543210
+            }
+          },
+          "required": [
+            "commuterId",
+            "commuterName",
+            "commuterEmail",
+            "nic",
+            "mobileNumber"
+          ]
+        }
+      }
+    }
+  }
+    
