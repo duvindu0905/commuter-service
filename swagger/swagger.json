@@ -11,12 +11,12 @@
         "description": "Development Server"
       },
       {
-        "url": "https://api.commuterservice.bussewaya.online",
+        "url": "https://commuter-service-193893744076.us-central1.run.app",
         "description": "Production Server"
       }
     ],
     "paths": {
-      "/commuters": {
+      "/commuter-service/commuters": {
         "post": {
           "summary": "Create a new commuter",
           "tags": ["Commuter"],
@@ -73,7 +73,7 @@
           }
         }
       },
-      "/commuters/{commuterId}": {
+      "/commuter-service/commuters/{commuterId}": {
         "get": {
           "summary": "Get a commuter by commuterId",
           "tags": ["Commuter"],
@@ -142,4 +142,4 @@
       }
     }
   }
-    
+  
